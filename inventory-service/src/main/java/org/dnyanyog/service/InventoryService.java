@@ -4,7 +4,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import org.dnyanyog.dto.InventoryRequest;
 import org.dnyanyog.dto.InventoryResponse;
-
+import org.springframework.stereotype.Component;
+@Component
 public interface InventoryService {
 
   InventoryResponse addOrUpdateInventory(@Valid InventoryRequest request);
