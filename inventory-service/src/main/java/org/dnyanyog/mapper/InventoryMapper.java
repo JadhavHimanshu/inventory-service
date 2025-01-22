@@ -1,24 +1,35 @@
 package org.dnyanyog.mapper;
 
+import org.dnyanyog.dto.InventoryRequest;
 import org.dnyanyog.dto.InventoryResponse;
 import org.dnyanyog.entity.Inventory;
 
 public class InventoryMapper {
-  //  public static Inventory toEntity(InventoryRequest request, Integer product_id) {
-  //    return Inventory.getInstance()
-  //    		   .setProduct_id(request.getProduct_id())
-  //   .se
-  //				  .setPrice(request.getPrice())
-  //				  .setsetBarcode(request.getBarcode())
-  //				  .
-  //				  //.setSku(request.getSku())
-  //
-
-  // }
+  public static Inventory toEntity(InventoryRequest request) {
+    return Inventory.getInstance()
+        .setProduct_id(request.getProduct_id())
+        .setBarcode(request.getBarcode())
+        .setBrand_name(request.getBrand_name())
+        .setCategory_name(request.getCategory_name())
+        .setDate(request.getExpiryDate())
+        .setDescription(request.getDescription())
+        .setDimensions(request.getDimensions())
+        .setIs_active(false)
+        .setMaximum_stock_level(request.getMaximum_stock_level())
+        .setMinimum_stock_level(request.getMinimum_stock_level())
+        .setPrice(request.getPrice())
+        .setSupplier_name(request.getSupplier_name())
+        .setTax_rate(request.getTax_rate())
+        .setWeight(request.getWeight())
+        .setCost_price(request.getCost_price())
+        .setProduct_name(request.getProduct_name())
+        .setQuantity_per_unit(request.getQuantity_per_unit())
+        .setImage_media(request.getImage_media());
+  }
 
   public static InventoryResponse toDto(Inventory inverntory, String message, String code) {
     InventoryResponse response = new InventoryResponse();
-    // response.setProduct_name(inverntory.setprr);
+    response.setProduct_name(inverntory.getProduct_name());
     response.setCode(code);
     response.setMessage(message);
     response.setProduct_id(inverntory.getProduct_id());

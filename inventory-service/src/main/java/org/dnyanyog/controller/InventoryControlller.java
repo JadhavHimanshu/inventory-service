@@ -8,21 +8,22 @@ import org.dnyanyog.dto.InventoryResponse;
 import org.dnyanyog.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+// @RequestMapping("/api/v1/auth")
+@Component
 public class InventoryControlller {
   @Autowired private InventoryService inventoryService;
 
   @PostMapping(
-      path = "/product",
+      path = "/api/v1/auth/product",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public InventoryResponse addOrUpdateInventory(@Valid @RequestBody InventoryRequest request) {
@@ -34,7 +35,7 @@ public class InventoryControlller {
   }
 
   @GetMapping(
-      path = "/product/productId/{productId}",
+      path = "/api/v1/auth/product/productId/{productId}",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public ResponseEntity<InventoryResponse> findByproduct_id(
@@ -44,7 +45,7 @@ public class InventoryControlller {
   }
 
   @GetMapping(
-      path = "/products",
+      path = "/api/v1/auth/products",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public ResponseEntity<List<InventoryResponse>> getAllProducts(
@@ -53,8 +54,8 @@ public class InventoryControlller {
     return ResponseEntity.ok(inventory);
   }
 
-  @DeleteMapping(path = "/product_delete/{productId}")
   @Transactional
+  @DeleteMapping(path = "/api/v1/auth/delete/productId/{productId}")
   public InventoryResponse deleteProduct(@Valid @PathVariable Integer productId) {
     return inventoryService.deleteByproduct_id(productId);
   }

@@ -1,8 +1,12 @@
 package org.dnyanyog.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.Date;
 import org.springframework.stereotype.Component;
@@ -12,8 +16,14 @@ import org.springframework.stereotype.Component;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "inventory_service")
 public class Inventory {
+
   @Column(name = "product_id")
-  private Integer product_id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Integer productId;
+
+  @Column(name = "product_name")
+  private String product_name;
 
   @Column(name = "description")
   private String description;
@@ -33,7 +43,7 @@ public class Inventory {
   @Column(name = "tax_rate")
   private Integer tax_rate;
 
-  @Column(name = "quantiy")
+  @Column(name = "quantity")
   private Integer quantity_per_unit;
 
   @Column(name = "barcode")
@@ -57,146 +67,173 @@ public class Inventory {
   @Column(name = "max_stock")
   private Integer maximum_stock_level;
 
-  @Column(name = "")
+  @Column(name = "is_active")
   private boolean is_active;
 
   @Column(name = "date")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
   private Date date;
 
   public Integer getProduct_id() {
-    return product_id;
+    return productId;
   }
 
-  public void setProduct_id(Integer product_id) {
-    this.product_id = product_id;
+  public Inventory setProduct_id(Integer product_id) {
+    this.productId = product_id;
+    return this;
   }
 
   public Date getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public Inventory setDate(Date date) {
     this.date = date;
+    return this;
   }
 
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public Inventory setDescription(String description) {
     this.description = description;
+    return this;
   }
 
   public String getCategory_name() {
     return category_name;
   }
 
-  public void setCategory_name(String category_name) {
+  public Inventory setCategory_name(String category_name) {
     this.category_name = category_name;
+    return this;
   }
 
   public String getBrand_name() {
     return brand_name;
   }
 
-  public void setBrand_name(String brand_name) {
+  public Inventory setBrand_name(String brand_name) {
     this.brand_name = brand_name;
+    return this;
   }
 
   public Integer getPrice() {
     return price;
   }
 
-  public void setPrice(Integer price) {
+  public Inventory setPrice(Integer price) {
     this.price = price;
+    return this;
   }
 
   public Integer getCost_price() {
     return cost_price;
   }
 
-  public void setCost_price(Integer cost_price) {
+  public Inventory setCost_price(Integer cost_price) {
     this.cost_price = cost_price;
+    return this;
   }
 
   public Integer getTax_rate() {
     return tax_rate;
   }
 
-  public void setTax_rate(Integer tax_rate) {
+  public Inventory setTax_rate(Integer tax_rate) {
     this.tax_rate = tax_rate;
+    return this;
   }
 
   public Integer getQuantity_per_unit() {
     return quantity_per_unit;
   }
 
-  public void setQuantity_per_unit(Integer quantity_per_unit) {
+  public Inventory setQuantity_per_unit(Integer quantity_per_unit) {
     this.quantity_per_unit = quantity_per_unit;
+    return this;
   }
 
   public Long getBarcode() {
     return barcode;
   }
 
-  public void setBarcode(Long barcode) {
+  public Inventory setBarcode(Long barcode) {
     this.barcode = barcode;
+    return this;
   }
 
   public Integer getWeight() {
     return weight;
   }
 
-  public void setWeight(Integer weight) {
+  public Inventory setWeight(Integer weight) {
     this.weight = weight;
+    return this;
   }
 
   public Integer getDimensions() {
     return dimensions;
   }
 
-  public void setDimensions(Integer dimensions) {
+  public Inventory setDimensions(Integer dimensions) {
     this.dimensions = dimensions;
+    return this;
   }
 
   public String getImage_media() {
     return image_media;
   }
 
-  public void setImage_media(String image_media) {
+  public Inventory setImage_media(String image_media) {
     this.image_media = image_media;
+    return this;
   }
 
   public String getSupplier_name() {
     return supplier_name;
   }
 
-  public void setSupplier_name(String supplier_name) {
+  public Inventory setSupplier_name(String supplier_name) {
     this.supplier_name = supplier_name;
+    return this;
   }
 
   public Integer getMinimum_stock_level() {
     return minimum_stock_level;
   }
 
-  public void setMinimum_stock_level(Integer minimum_stock_level) {
+  public Inventory setMinimum_stock_level(Integer minimum_stock_level) {
     this.minimum_stock_level = minimum_stock_level;
+    return this;
   }
 
   public Integer getMaximum_stock_level() {
     return maximum_stock_level;
   }
 
-  public void setMaximum_stock_level(Integer maximum_stock_level) {
+  public Inventory setMaximum_stock_level(Integer maximum_stock_level) {
     this.maximum_stock_level = maximum_stock_level;
+    return this;
   }
 
   public boolean isIs_active() {
     return is_active;
   }
 
-  public void setIs_active(boolean is_active) {
+  public Inventory setIs_active(boolean is_active) {
     this.is_active = is_active;
+    return this;
+  }
+
+  public String getProduct_name() {
+    return product_name;
+  }
+
+  public Inventory setProduct_name(String product_name) {
+    this.product_name = product_name;
+    return this;
   }
 
   public static Inventory getInstance() {
