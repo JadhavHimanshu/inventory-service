@@ -72,7 +72,8 @@ public class Inventory {
 
   @Column(name = "date")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
-  private Date date;
+  // @JsonDeserialize
+  private Date created_at;
 
   public Integer getProduct_id() {
     return productId;
@@ -83,12 +84,20 @@ public class Inventory {
     return this;
   }
 
-  public Date getDate() {
-    return date;
+  public Integer getProductId() {
+    return productId;
   }
 
-  public Inventory setDate(Date date) {
-    this.date = date;
+  public void setProductId(Integer productId) {
+    this.productId = productId;
+  }
+
+  public Date getCreated_at() {
+    return created_at;
+  }
+
+  public Inventory setCreated_at(Date created_at) {
+    this.created_at = created_at;
     return this;
   }
 

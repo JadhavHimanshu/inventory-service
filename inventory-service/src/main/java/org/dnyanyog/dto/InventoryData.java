@@ -71,7 +71,7 @@ public class InventoryData {
   private Integer maximum_stock_level;
 
   private boolean is_active;
-  private Date expiryDate;
+  private Date created_at;
 
   public String getProduct_name() {
     return product_name;
@@ -217,11 +217,11 @@ public class InventoryData {
     this.is_active = is_active;
   }
 
-  public Date getExpiryDate() {
-    return expiryDate;
+  public Date getCreated_at() {
+    return created_at;
   }
 
-  public void setExpiryDate(Date expiryDate) {
-    this.expiryDate = expiryDate;
+  public void setCreated_at(Date created_at) {
+    this.created_at = created_at;
   }
 }

@@ -11,7 +11,7 @@ public class InventoryMapper {
         .setBarcode(request.getBarcode())
         .setBrand_name(request.getBrand_name())
         .setCategory_name(request.getCategory_name())
-        .setDate(request.getExpiryDate())
+        .setCreated_at(request.getCreated_at())
         .setDescription(request.getDescription())
         .setDimensions(request.getDimensions())
         .setIs_active(false)
@@ -33,7 +33,7 @@ public class InventoryMapper {
     response.setCode(code);
     response.setMessage(message);
     response.setProduct_id(inverntory.getProduct_id());
-    response.setExpiryDate(inverntory.getDate());
+    response.setCreated_at(inverntory.getCreated_at());
     response.setBarcode(inverntory.getBarcode());
     response.setBrand_name(inverntory.getBrand_name());
     response.setCategory_name(inverntory.getCategory_name());

@@ -1,5 +1,6 @@
 package org.dnyanyog.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,9 @@ public class InventoryResponse {
   private Integer minimum_stock_level;
   private Integer maximum_stock_level;
   private boolean is_active;
-  private Date expiryDate;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
+  private Date created_at;
 
   public String getCode() {
     return code;
@@ -181,12 +184,12 @@ public class InventoryResponse {
     this.is_active = is_active;
   }
 
-  public Date getExpiryDate() {
-    return expiryDate;
+  public Date getCreated_at() {
+    return created_at;
   }
 
-  public void setExpiryDate(Date expiryDate) {
-    this.expiryDate = expiryDate;
+  public void setCreated_at(Date created_at) {
+    this.created_at = created_at;
   }
 
   public Integer getProduct_id() {
