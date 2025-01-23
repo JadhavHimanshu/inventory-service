@@ -17,13 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-// @RequestMapping("/api/v1/auth")
 @Component
 public class InventoryControlller {
   @Autowired private InventoryService inventoryService;
 
   @PostMapping(
-      path = "/api/v1/auth/product",
+      path = "/api/v1/product",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public InventoryResponse addOrUpdateInventory(@Valid @RequestBody InventoryRequest request) {
@@ -35,7 +34,7 @@ public class InventoryControlller {
   }
 
   @GetMapping(
-      path = "/api/v1/auth/product/productId/{productId}",
+      path = "/api/v1/product/productId/{productId}",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public ResponseEntity<InventoryResponse> findByproduct_id(
@@ -45,7 +44,7 @@ public class InventoryControlller {
   }
 
   @GetMapping(
-      path = "/api/v1/auth/products",
+      path = "/api/v1/products",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public ResponseEntity<List<InventoryResponse>> getAllProducts(
@@ -55,7 +54,7 @@ public class InventoryControlller {
   }
 
   @Transactional
-  @DeleteMapping(path = "/api/v1/auth/delete/productId/{productId}")
+  @DeleteMapping(path = "/api/v1/delete/productId/{productId}")
   public InventoryResponse deleteProduct(@Valid @PathVariable Integer productId) {
     return inventoryService.deleteByproduct_id(productId);
   }
