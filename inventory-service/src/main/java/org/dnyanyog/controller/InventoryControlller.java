@@ -52,7 +52,7 @@ public class InventoryControlller {
     List<InventoryResponse> inventory = inventoryService.getAllProducts(request);
     return ResponseEntity.ok(inventory);
   }
-
+    
   @Transactional
   @DeleteMapping(path = "/api/v1/delete/productId/{productId}")
   public InventoryResponse deleteProduct(@Valid @PathVariable Integer productId) {
