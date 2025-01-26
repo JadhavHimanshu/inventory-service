@@ -24,6 +24,9 @@ public class InventoryMapper {
         .setCost_price(request.getCost_price())
         .setProduct_name(request.getProduct_name())
         .setQuantity_per_unit(request.getQuantity_per_unit())
+        .setUpdated_at(request.getUpdated_at())
+        .setExpiryDate(request.getExpiryDate())
+        .setReduce_quantity(request.getReduce_qunatity())
         .setImage_media(request.getImage_media());
   }
 
@@ -45,6 +48,9 @@ public class InventoryMapper {
     response.setMinimum_stock_level(inverntory.getMinimum_stock_level());
     response.setPrice(inverntory.getPrice());
     response.setQuantity_per_unit(inverntory.getQuantity_per_unit());
+    response.setExpiryDate(inverntory.getExpiryDate());
+    response.setUpdated_at(inverntory.getUpdated_at());
+    response.setReduce_qunatity(inverntory.getReduce_quantity());
     response.setIs_active(false);
     return response;
   }

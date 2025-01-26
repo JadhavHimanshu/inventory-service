@@ -5,7 +5,9 @@ public enum ResponseCode {
   Update_Product("200", "Product updated sucessfully"),
   Search_Product_Success("200", "Product found sucessfully"),
   Delete_Product("200", "Product deleted sucessfully"),
-  Search_Product_Fail("911", "Product not found ");
+  Search_Product_Fail("911", "Product not found "),
+  Reduce_Quantity_Updated("200", "Product Quantiy upddated sucessfully"),
+  Insuffiecient_Quantity("200", " Product  are Insuffienct ");
 
   private final String code;
   private final String message;

@@ -32,6 +32,14 @@ public class InventoryResponse {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
   private Date created_at;
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
+  private Date updated_at;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
+  private Date expiryDate;
+
+  private Integer reduce_qunatity;
+
   public String getCode() {
     return code;
   }
@@ -198,5 +206,29 @@ public class InventoryResponse {
 
   public void setProduct_id(Integer product_id) {
     this.product_id = product_id;
+  }
+
+  public Date getUpdated_at() {
+    return updated_at;
+  }
+
+  public void setUpdated_at(Date updated_at) {
+    this.updated_at = updated_at;
+  }
+
+  public Date getExpiryDate() {
+    return expiryDate;
+  }
+
+  public void setExpiryDate(Date expiryDate) {
+    this.expiryDate = expiryDate;
+  }
+
+  public Integer getReduce_qunatity() {
+    return reduce_qunatity;
+  }
+
+  public void setReduce_qunatity(Integer reduce_qunatity) {
+    this.reduce_qunatity = reduce_qunatity;
   }
 }

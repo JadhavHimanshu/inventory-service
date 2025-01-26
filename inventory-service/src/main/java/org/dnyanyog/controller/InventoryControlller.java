@@ -33,6 +33,14 @@ public class InventoryControlller {
     }
   }
 
+  @PostMapping(
+      path = "api/v1/product/reduceQuantity",
+      consumes = {"application/json", "application/xml"},
+      produces = {"application/json", "application/xml"})
+  public InventoryResponse reduceQuantity(@Valid @RequestBody InventoryRequest request) {
+    return inventoryService.reduceQuntity(request);
+  }
+
   @GetMapping(
       path = "/api/v1/product/productId/{productId}",
       consumes = {"application/json", "application/xml"},
@@ -52,7 +60,7 @@ public class InventoryControlller {
     List<InventoryResponse> inventory = inventoryService.getAllProducts(request);
     return ResponseEntity.ok(inventory);
   }
-    
+
   @Transactional
   @DeleteMapping(path = "/api/v1/delete/productId/{productId}")
   public InventoryResponse deleteProduct(@Valid @PathVariable Integer productId) {

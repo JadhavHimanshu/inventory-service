@@ -19,4 +19,6 @@ public interface InventoryService {
   List<InventoryResponse> getAllProducts(InventoryRequest request);
 
   InventoryResponse deleteByproduct_id(Integer productId);
+
+  InventoryResponse reduceQuntity(InventoryRequest request);
 }

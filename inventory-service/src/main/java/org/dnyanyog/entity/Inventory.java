@@ -75,6 +75,17 @@ public class Inventory {
   // @JsonDeserialize
   private Date created_at;
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YY/MM/dd")
+  @Column(name = "updated_at")
+  private Date updated_at;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YY/MM/dd")
+  @Column(name = "expiryDate")
+  private Date expiryDate;
+
+  @Column(name = "reduce_quantity")
+  private Integer reduce_quantity;
+
   public Integer getProduct_id() {
     return productId;
   }
@@ -242,6 +253,33 @@ public class Inventory {
 
   public Inventory setProduct_name(String product_name) {
     this.product_name = product_name;
+    return this;
+  }
+
+  public Date getUpdated_at() {
+    return updated_at;
+  }
+
+  public Inventory setUpdated_at(Date updated_at) {
+    this.updated_at = updated_at;
+    return this;
+  }
+
+  public Date getExpiryDate() {
+    return expiryDate;
+  }
+
+  public Inventory setExpiryDate(Date expiryDate) {
+    this.expiryDate = expiryDate;
+    return this;
+  }
+
+  public Integer getReduce_quantity() {
+    return reduce_quantity;
+  }
+
+  public Inventory setReduce_quantity(Integer reduce_quantity) {
+    this.reduce_quantity = reduce_quantity;
     return this;
   }
 

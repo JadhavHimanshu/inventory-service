@@ -88,4 +88,29 @@ public class InventoryServiceImpl implements InventoryService {
     }
     return response;
   }
+
+  @Override
+  public InventoryResponse reduceQuntity(InventoryRequest request) {
+    InventoryResponse response = new InventoryResponse();
+    Optional<Inventory> data = this.repo.findByProductId(request.getProduct_id());
+    if (data.isPresent()) {
+      Inventory inventory = data.get();
+      if (inventory.getMaximum_stock_level() >= request.getReduce_qunatity()) {
+        inventory.setMaximum_stock_level(
+            inventory.getMaximum_stock_level() - request.getReduce_qunatity());
+        response =
+            InventoryMapper.toDto(
+                inventory,
+                ResponseCode.Reduce_Quantity_Updated.getMessage(),
+                ResponseCode.Reduce_Quantity_Updated.getCode());
+      } else {
+        response.setCode(ResponseCode.Insuffiecient_Quantity.getCode());
+        response.setMessage(ResponseCode.Insuffiecient_Quantity.getMessage());
+      }
+    } else {
+      response.setMessage(ResponseCode.Search_Product_Fail.getMessage());
+      response.setCode(ResponseCode.Search_Product_Fail.getCode());
+    }
+    return response;
+  }
 }
