@@ -75,11 +75,11 @@ public class Inventory {
   // @JsonDeserialize
   private Date created_at;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YY/MM/dd")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
   @Column(name = "updated_at")
   private Date updated_at;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YY/MM/dd")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
   @Column(name = "expiryDate")
   private Date expiryDate;
 

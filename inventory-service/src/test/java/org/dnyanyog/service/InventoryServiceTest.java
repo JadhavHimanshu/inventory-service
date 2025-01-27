@@ -1,0 +1,141 @@
+package org.dnyanyog.service;
+
+import java.util.Optional;
+import org.dnyanyog.InventoryServiceMain;
+import org.dnyanyog.common.ResponseCode;
+import org.dnyanyog.dto.InventoryRequest;
+import org.dnyanyog.dto.InventoryResponse;
+import org.dnyanyog.entity.Inventory;
+import org.dnyanyog.repositories.InventoryRepo;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.testng.Assert;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+@ContextConfiguration(classes = InventoryServiceMain.class)
+public class InventoryServiceTest {
+  @Mock InventoryRepo repo;
+  @InjectMocks InventoryServiceImpl inventoryService;
+  @Autowired MockMvc mockMvc;
+
+  @Test
+  public void addInventory() {
+    InventoryRequest request = new InventoryRequest();
+    request.setBarcode((long) 12234555);
+    request.setBrand_name("Sample Brand");
+    request.setCategory_name("Sample Brand");
+    request.setCost_price(100);
+    // request.setCreated_at(23 - 3 - 2025);
+    request.setDescription("This is a sample product description");
+    request.setDimensions(200);
+    // request.setExpiryDate(5 - 06 - 2027);
+    request.setImage_media("image_url.jpg");
+    request.setIs_active(false);
+    request.setMaximum_stock_level(2);
+    request.setMinimum_stock_level(50);
+    request.setPrice(45);
+    request.setProduct_id(56);
+    request.setProduct_name("rtyui");
+    request.setQuantity_per_unit(34);
+    request.setReduce_qunatity(23);
+    request.setSku("ABC123");
+    request.setSupplier_name("Sample Supplier");
+    request.setTax_rate(18);
+    // request.setUpdated_at(01 - 01 - 2025);
+    request.setWeight(500);
+
+    Inventory inventoryEntity = new Inventory();
+    inventoryEntity
+        .setBarcode(null)
+        .setBrand_name("Sample Brand")
+        .setCategory_name("Electronics")
+        .setBarcode((long) 123456753)
+        .setCost_price(100)
+        // .setCreated_at(2024 - 1 - 20)
+        .setDescription("This is a sample product description")
+        .setDimensions(200)
+        // .setExpiryDate(12 - 4 - 2026)
+        .setImage_media("image_url.jpg")
+        .setIs_active(false)
+        .setMaximum_stock_level(2)
+        .setMinimum_stock_level(50)
+        .setPrice(100)
+        .setProduct_id(23)
+        .setProduct_name("Shampoo")
+        .setQuantity_per_unit(3)
+        //  .setReduce_quantity(2)
+        .setSupplier_name("Sample Supplier")
+        .setTax_rate(18)
+        // .setUpdated_at(01 - 05 - 2027)
+        .setWeight(500);
+    Mockito.when(repo.save(Mockito.any())).thenReturn(inventoryEntity);
+    InventoryResponse response = inventoryService.addOrUpdateInventory(request);
+    Assert.assertEquals(ResponseCode.Add_Product.getCode(), response.getCode());
+    Assert.assertEquals(ResponseCode.Add_Product.getMessage(), response.getMessage());
+    Assert.assertNotNull(response);
+  }
+
+  @Test
+  public void upadteProduct() {
+    InventoryRequest request = new InventoryRequest();
+    request.setBarcode((long) 12234523);
+    request.setBrand_name("Sample Brand");
+    request.setCategory_name("Electronics");
+    request.setCost_price(100);
+    // request.setCreated_at(null);
+    request.setDescription("This is a sample product description");
+    request.setDimensions(200);
+    // request.setExpiryDate(null);
+    request.setImage_media("image_url.jpg");
+    request.setIs_active(false);
+    request.setMaximum_stock_level(2);
+    request.setMinimum_stock_level(50);
+    request.setPrice(100);
+    request.setProduct_id(45);
+    request.setProduct_name("Shampoo");
+    request.setQuantity_per_unit(1);
+    request.setReduce_qunatity(23);
+    request.setSku("W234");
+    request.setSupplier_name("Sample name");
+    request.setTax_rate(18);
+    // request.setUpdated_at(null);
+    request.setWeight(500);
+
+    Inventory inventoryEntity = new Inventory();
+    inventoryEntity
+        .setProduct_id(45)
+        .setBarcode((long) 12234523)
+        .setBrand_name("Sample Brand")
+        .setCategory_name("Electronics")
+        .setCost_price(100)
+        // .setCreated_at(null)
+        .setDescription("This is a sample product description")
+        .setDimensions(200)
+        //      .setExpiryDate(null)
+        .setImage_media("image_url.jpg")
+        .setIs_active(false)
+        .setMaximum_stock_level(3)
+        .setMinimum_stock_level(50)
+        .setPrice(100)
+        .setProduct_name("Sample name")
+        .setQuantity_per_unit(1)
+        .setSupplier_name("Sample name")
+        .setTax_rate(18)
+        // .setUpdated_at(null)
+        .setWeight(400);
+
+    Mockito.when(repo.findById(Mockito.anyLong())).thenReturn(Optional.empty());
+    Mockito.when(repo.save(Mockito.any())).thenReturn(inventoryEntity);
+    InventoryResponse response = inventoryService.addOrUpdateInventory(request);
+    Assert.assertEquals(ResponseCode.Update_Product.getCode(), response.getCode());
+    Assert.assertEquals(ResponseCode.Update_Product.getMessage(), response.getMessage());
+  }
+}
