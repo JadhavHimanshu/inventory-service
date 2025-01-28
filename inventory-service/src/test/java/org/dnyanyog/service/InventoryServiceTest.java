@@ -83,7 +83,6 @@ public class InventoryServiceTest {
     Assert.assertNotNull(response);
   }
 
-  @Test
   public void upadteProduct() {
     InventoryRequest request = new InventoryRequest();
     request.setBarcode((long) 12234523);
@@ -132,10 +131,135 @@ public class InventoryServiceTest {
         // .setUpdated_at(null)
         .setWeight(400);
 
-    Mockito.when(repo.findById(Mockito.anyLong())).thenReturn(Optional.empty());
+    Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(inventoryEntity));
     Mockito.when(repo.save(Mockito.any())).thenReturn(inventoryEntity);
     InventoryResponse response = inventoryService.addOrUpdateInventory(request);
     Assert.assertEquals(ResponseCode.Update_Product.getCode(), response.getCode());
     Assert.assertEquals(ResponseCode.Update_Product.getMessage(), response.getMessage());
+    Assert.assertNotNull(response);
+  }
+
+  @Test
+  public void findByproductid() {
+
+    Inventory inventoryEntity = new Inventory();
+    inventoryEntity
+        .setBarcode((long) 234224556)
+        .setBrand_name("Sample")
+        .setCategory_name("Electronics")
+        //  .setCreated_at(null)
+        //  .setExpiryDate(null)
+        .setDescription("This is a sample product description")
+        .setDimensions(200)
+        .setImage_media("image_url.jpg")
+        .setIs_active(false)
+        .setMinimum_stock_level(3)
+        .setMaximum_stock_level(50)
+        .setPrice(100)
+        .setProduct_id(45)
+        .setProduct_name("Sample Product")
+        .setSupplier_name("Sample Name")
+        .setQuantity_per_unit(1)
+        .setReduce_quantity(23)
+        .setTax_rate(18)
+        //  .setUpdated_at(null)
+        .setWeight(500);
+    Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(inventoryEntity));
+    InventoryResponse response = inventoryService.findByproduct_id(45);
+    Assert.assertEquals(ResponseCode.Search_Product_Success.getMessage(), response.getMessage());
+    Assert.assertEquals(ResponseCode.Search_Product_Success.getCode(), response.getCode());
+    Assert.assertNotNull(response);
+  }
+
+  @Test
+  public void deleteById() {
+    Inventory existingEntity = new Inventory();
+    existingEntity
+        .setBarcode((long) 1234564)
+        .setBrand_name("Sample")
+        .setCategory_name("Electronics")
+        .setCost_price(100)
+        .setDescription("This is a sample product description")
+        .setDimensions(200)
+        //   .setExpiryDate(null)
+        .setImage_media("image_url.jpg")
+        .setIs_active(false)
+        .setMinimum_stock_level(3)
+        .setMaximum_stock_level(50)
+        .setPrice(100)
+        .setProduct_id(34)
+        .setProduct_name("Smaple Name ")
+        .setSupplier_name("Sample Name ")
+        .setQuantity_per_unit(1)
+        .setReduce_quantity(23);
+    // .setSku("W234");
+    // when(mockObject.method()).thenReturn(Optional.of(new Inventory()));
+
+    Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(new Inventory()));
+    Mockito.when(repo.deleteByProductId(45)).thenReturn(1);
+    InventoryResponse response = inventoryService.deleteByproduct_id(45);
+    Assert.assertEquals(ResponseCode.Delete_Product.getMessage(), response.getMessage());
+    Assert.assertEquals(ResponseCode.Delete_Product.getCode(), response.getCode());
+    Mockito.verify(repo).findByProductId(45);
+    Mockito.verify(repo).deleteByProductId(45);
+  }
+
+  @Test
+  public void reduceQuantity() {
+    InventoryRequest request = new InventoryRequest();
+    request.setBarcode((long) 1234564);
+    request.setBrand_name("Sample");
+    request.setCategory_name("Electronics");
+    //   request.setCreated_at(null);
+    request.setCost_price(100);
+    request.setDescription("This is a sample product description");
+    request.setDimensions(200);
+    // request.setExpiryDate(null);
+    request.setImage_media("image_url.jpg");
+    request.setIs_active(false);
+    request.setMaximum_stock_level(50);
+    request.setMinimum_stock_level(2);
+    request.setPrice(100);
+    request.setProduct_id(45);
+    request.setProduct_name("Sample Name ");
+    request.setQuantity_per_unit(1);
+    request.setReduce_qunatity(20);
+    request.setSku("W123");
+    request.setSupplier_name("Sample Name");
+    request.setTax_rate(18);
+    //  request.setUpdated_at(null);
+    request.setWeight(500);
+
+    Inventory entity = new Inventory();
+    entity
+        .setBarcode((long) 1234564)
+        .setBrand_name("Sample")
+        .setCategory_name("Electronics")
+        .setCost_price(100)
+        // .setCreated_at(null)
+        .setDescription("This is a sample product description")
+        .setDimensions(200)
+        // .setExpiryDate(null)
+        .setImage_media("image_url.jpg")
+        .setIs_active(false)
+        .setMaximum_stock_level(3)
+        .setMinimum_stock_level(50)
+        .setPrice(100)
+        .setProduct_id(45)
+        .setProduct_name("Sample Name")
+        .setQuantity_per_unit(1)
+        .setReduce_quantity(20)
+        .setSupplier_name("Sample Name ")
+        .setTax_rate(18)
+        .setWeight(500);
+
+    Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(entity));
+    entity.setReduce_quantity(20);
+    Mockito.when(repo.save(Mockito.any())).thenReturn(entity);
+
+    InventoryResponse response = inventoryService.reduceQuntity(request);
+    Assert.assertEquals(ResponseCode.Reduce_Quantity_Updated.getMessage(), response.getMessage());
+    Assert.assertEquals(ResponseCode.Reduce_Quantity_Updated.getCode(), response.getCode());
+    Assert.assertNotNull(response);
   }
 }

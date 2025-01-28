@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InventoryRepo extends JpaRepository<Inventory, Integer> {
 
-  Optional<Inventory> findByProductId(Integer product_id);
+  Optional<Inventory> findByProductId(long l);
 
   // List<Inventory> getAllProducts();
 
   Integer deleteByProductId(Integer product_id);
+
+  Integer deleteByProductId(Long product_id);
 }
