@@ -30,7 +30,7 @@ public class InventoryMapper {
         .setImage_media(request.getImage_media());
   }
 
-  public static InventoryResponse toDto(Inventory inverntory, String message, String code) {
+  public static InventoryResponse toDto(Inventory inverntory, String code, String message) {
     InventoryResponse response = new InventoryResponse();
     response.setProduct_name(inverntory.getProduct_name());
     response.setCode(code);

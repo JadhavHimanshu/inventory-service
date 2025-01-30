@@ -37,8 +37,8 @@ public class InventoryServiceImpl implements InventoryService {
       response =
           InventoryMapper.toDto(
               saveInventory,
-              ResponseCode.Add_Product.getMessage(),
-              ResponseCode.Add_Product.getCode());
+              ResponseCode.Add_Product.getCode(),
+              ResponseCode.Add_Product.getMessage());
     }
     return response;
   }

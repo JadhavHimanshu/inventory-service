@@ -83,6 +83,7 @@ public class InventoryServiceTest {
     Assert.assertNotNull(response);
   }
 
+  @Test
   public void upadteProduct() {
     InventoryRequest request = new InventoryRequest();
     request.setBarcode((long) 12234523);
@@ -181,7 +182,7 @@ public class InventoryServiceTest {
         .setCost_price(100)
         .setDescription("This is a sample product description")
         .setDimensions(200)
-        //   .setExpiryDate(null)
+        //  .setExpiryDate(2025 - 05 - 01)
         .setImage_media("image_url.jpg")
         .setIs_active(false)
         .setMinimum_stock_level(3)
