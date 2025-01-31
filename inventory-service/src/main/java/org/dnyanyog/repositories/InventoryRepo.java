@@ -1,5 +1,6 @@
 package org.dnyanyog.repositories;
 
+import java.util.List;
 import java.util.Optional;
 import org.dnyanyog.entity.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,7 @@ public interface InventoryRepo extends JpaRepository<Inventory, Integer> {
 
   Optional<Inventory> findByProductId(long l);
 
-  // List<Inventory> getAllProducts();
+  List<Inventory> getAllProducts();
 
   Integer deleteByProductId(Integer product_id);
 
