@@ -1,12 +1,14 @@
 package org.dnyanyog.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
-import java.util.Date;
+import java.time.LocalDate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -71,9 +73,17 @@ public class InventoryData {
   private Integer maximum_stock_level;
 
   private boolean is_active;
-  private Date created_at;
-  private Date updated_at;
-  private Date expiryDate;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
+  private LocalDate created_at;
+
+  @JsonDeserialize
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
+  private LocalDate updated_at;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
+  private LocalDate expiryDate;
+
   private Integer reduce_qunatity;
 
   public String getProduct_name() {
@@ -220,27 +230,27 @@ public class InventoryData {
     this.is_active = is_active;
   }
 
-  public Date getCreated_at() {
+  public LocalDate getCreated_at() {
     return created_at;
   }
 
-  public void setCreated_at(Date created_at) {
+  public void setCreated_at(LocalDate created_at) {
     this.created_at = created_at;
   }
 
-  public Date getUpdated_at() {
+  public LocalDate getUpdated_at() {
     return updated_at;
   }
 
-  public void setUpdated_at(Date updated_at) {
+  public void setUpdated_at(LocalDate updated_at) {
     this.updated_at = updated_at;
   }
 
-  public Date getExpiryDate() {
+  public LocalDate getExpiryDate() {
     return expiryDate;
   }
 
-  public void setExpiryDate(Date expiryDate) {
+  public void setExpiryDate(LocalDate expiryDate) {
     this.expiryDate = expiryDate;
   }
 

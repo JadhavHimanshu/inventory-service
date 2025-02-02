@@ -42,9 +42,9 @@ public class InventoryControllerTest {
                     + "  \"minimum_stock_level\":\"2\",\r\n"
                     + "  \"maximum_stock_level\": \"50\",\r\n"
                     + "  \"is_active\":\"true\",\r\n"
-                    + "  \"created_at\":\"02-03-2025\" ,\r\n"
-                    + "   \"updated_at\":\"4-01-2025\",\r\n"
-                    + "    \"expiryDate\": \"5-6-2027\",\r\n"
+                    + "  \"created_at\":\"2025-5-3\" ,\r\n"
+                    + "   \"updated_at\":\"2025-9-5\",\r\n"
+                    + "    \"expiryDate\": \"2027-7-3\",\r\n"
                     + "  \"reduce_qunatity\":\"30\"\r\n"
                     + "}\r\n"
                     + "")
@@ -83,9 +83,9 @@ public class InventoryControllerTest {
                     + "  \"minimum_stock_level\":\"2\",\r\n"
                     + "  \"maximum_stock_level\": \"50\",\r\n"
                     + "  \"is_active\":\"true\",\r\n"
-                    + "  \"created_at\":\"02-03-2025\" ,\r\n"
-                    + "   \"updated_at\":\"4-01-2025\",\r\n"
-                    + "    \"expiryDate\": \"5-6-2027\",\r\n"
+                    + "  \"created_at\":\"2025-2-3\" ,\r\n"
+                    + "   \"updated_at\":\"2025-3-4\",\r\n"
+                    + "    \"expiryDate\": \"2027-3-2\",\r\n"
                     + "  \"reduce_qunatity\":\"30\"\r\n"
                     + "}\r\n"
                     + "")
@@ -101,9 +101,8 @@ public class InventoryControllerTest {
 
   @Test
   public void findByproductId() throws Exception {
-    RequestBuilder requestBuilder =
-        MockMvcRequestBuilders.get("/api/v1/product/productId/502")
-            .accept(MediaType.APPLICATION_JSON);
+    RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/v1/product/productId/402");
+    //   .accept(MediaType.APPLICATION_JSON);
     mockMvc
         .perform(requestBuilder)
         .andExpect(status().isOk())
@@ -115,7 +114,7 @@ public class InventoryControllerTest {
   @Test
   public void deletebyproductId() throws Exception {
     RequestBuilder requestBuilder =
-        MockMvcRequestBuilders.delete("/api/v1/delete/productId/502")
+        MockMvcRequestBuilders.delete("/api/v1/delete/productId/153")
             .accept(MediaType.APPLICATION_JSON);
     mockMvc
         .perform(requestBuilder)

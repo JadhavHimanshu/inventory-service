@@ -1,8 +1,7 @@
 package org.dnyanyog.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Date;
+import java.time.LocalDate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,14 +28,9 @@ public class InventoryResponse {
   private Integer maximum_stock_level;
   private boolean is_active;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
-  private Date created_at;
-
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
-  private Date updated_at;
-
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YY")
-  private Date expiryDate;
+  private LocalDate created_at;
+  private LocalDate updated_at;
+  private LocalDate expiryDate;
 
   private Integer reduce_qunatity;
 
@@ -192,11 +186,11 @@ public class InventoryResponse {
     this.is_active = is_active;
   }
 
-  public Date getCreated_at() {
+  public LocalDate getCreated_at() {
     return created_at;
   }
 
-  public void setCreated_at(Date created_at) {
+  public void setCreated_at(LocalDate created_at) {
     this.created_at = created_at;
   }
 
@@ -208,19 +202,19 @@ public class InventoryResponse {
     this.product_id = product_id;
   }
 
-  public Date getUpdated_at() {
+  public LocalDate getUpdated_at() {
     return updated_at;
   }
 
-  public void setUpdated_at(Date updated_at) {
+  public void setUpdated_at(LocalDate updated_at) {
     this.updated_at = updated_at;
   }
 
-  public Date getExpiryDate() {
+  public LocalDate getExpiryDate() {
     return expiryDate;
   }
 
-  public void setExpiryDate(Date expiryDate) {
+  public void setExpiryDate(LocalDate expiryDate) {
     this.expiryDate = expiryDate;
   }
 

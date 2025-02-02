@@ -41,10 +41,9 @@ public class InventoryControlller {
     return inventoryService.reduceQuntity(request);
   }
 
-  @GetMapping(
-      path = "/api/v1/product/productId/{productId}",
-      consumes = {"application/json", "application/xml"},
-      produces = {"application/json", "application/xml"})
+  @GetMapping(path = "/api/v1/product/productId/{productId}")
+  //      consumes = {"application/json", "application/xml"},
+  //      produces = {"application/json", "application/xml"})
   public ResponseEntity<InventoryResponse> findByproduct_id(
       @Valid @PathVariable Integer productId) {
     InventoryResponse response = inventoryService.findByproduct_id(productId);

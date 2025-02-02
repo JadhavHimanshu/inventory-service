@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -71,17 +71,16 @@ public class Inventory {
   private boolean is_active;
 
   @Column(name = "date")
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
-  // @JsonDeserialize
-  private Date created_at;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
+  private LocalDate created_at;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
   @Column(name = "updated_at")
-  private Date updated_at;
+  private LocalDate updated_at;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
   @Column(name = "expiryDate")
-  private Date expiryDate;
+  private LocalDate expiryDate;
 
   @Column(name = "reduce_quantity")
   private Integer reduce_quantity;
@@ -103,11 +102,11 @@ public class Inventory {
     this.productId = productId;
   }
 
-  public Date getCreated_at() {
+  public LocalDate getCreated_at() {
     return created_at;
   }
 
-  public Inventory setCreated_at(Date created_at) {
+  public Inventory setCreated_at(LocalDate created_at) {
     this.created_at = created_at;
     return this;
   }
@@ -256,20 +255,20 @@ public class Inventory {
     return this;
   }
 
-  public Date getUpdated_at() {
+  public LocalDate getUpdated_at() {
     return updated_at;
   }
 
-  public Inventory setUpdated_at(Date updated_at) {
+  public Inventory setUpdated_at(LocalDate updated_at) {
     this.updated_at = updated_at;
     return this;
   }
 
-  public Date getExpiryDate() {
+  public LocalDate getExpiryDate() {
     return expiryDate;
   }
 
-  public Inventory setExpiryDate(Date expiryDate) {
+  public Inventory setExpiryDate(LocalDate expiryDate) {
     this.expiryDate = expiryDate;
     return this;
   }

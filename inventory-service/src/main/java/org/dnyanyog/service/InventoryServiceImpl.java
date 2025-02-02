@@ -49,8 +49,8 @@ public class InventoryServiceImpl implements InventoryService {
     if (inventoryData.isPresent()) {
       return InventoryMapper.toDto(
           inventoryData.get(),
-          ResponseCode.Search_Product_Success.getMessage(),
-          ResponseCode.Search_Product_Success.getCode());
+          ResponseCode.Search_Product_Success.getCode(),
+          ResponseCode.Search_Product_Success.getMessage());
 
     } else {
       InventoryResponse response = new InventoryResponse();
@@ -101,8 +101,8 @@ public class InventoryServiceImpl implements InventoryService {
         response =
             InventoryMapper.toDto(
                 inventory,
-                ResponseCode.Reduce_Quantity_Updated.getMessage(),
-                ResponseCode.Reduce_Quantity_Updated.getCode());
+                ResponseCode.Reduce_Quantity_Updated.getCode(),
+                ResponseCode.Reduce_Quantity_Updated.getMessage());
       } else {
         response.setCode(ResponseCode.Insuffiecient_Quantity.getCode());
         response.setMessage(ResponseCode.Insuffiecient_Quantity.getMessage());

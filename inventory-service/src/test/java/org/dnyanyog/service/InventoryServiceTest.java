@@ -1,5 +1,6 @@
 package org.dnyanyog.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import org.dnyanyog.InventoryServiceMain;
 import org.dnyanyog.common.ResponseCode;
@@ -29,14 +30,15 @@ public class InventoryServiceTest {
   @Test
   public void addInventory() {
     InventoryRequest request = new InventoryRequest();
+    request.setUpdated_at(null);
     request.setBarcode((long) 12234555);
     request.setBrand_name("Sample Brand");
     request.setCategory_name("Sample Brand");
     request.setCost_price(100);
-    // request.setCreated_at(23 - 3 - 2025);
+    request.setCreated_at(LocalDate.now());
     request.setDescription("This is a sample product description");
     request.setDimensions(200);
-    // request.setExpiryDate(5 - 06 - 2027);
+    request.setExpiryDate(LocalDate.now());
     request.setImage_media("image_url.jpg");
     request.setIs_active(false);
     request.setMaximum_stock_level(2);
@@ -49,9 +51,8 @@ public class InventoryServiceTest {
     request.setSku("ABC123");
     request.setSupplier_name("Sample Supplier");
     request.setTax_rate(18);
-    // request.setUpdated_at(01 - 01 - 2025);
+    request.setUpdated_at(LocalDate.now());
     request.setWeight(500);
-
     Inventory inventoryEntity = new Inventory();
     inventoryEntity
         .setBarcode(null)
@@ -59,10 +60,10 @@ public class InventoryServiceTest {
         .setCategory_name("Electronics")
         .setBarcode((long) 123456753)
         .setCost_price(100)
-        // .setCreated_at(2024 - 1 - 20)
+        .setCreated_at(LocalDate.now())
         .setDescription("This is a sample product description")
         .setDimensions(200)
-        // .setExpiryDate(12 - 4 - 2026)
+        .setExpiryDate(LocalDate.now())
         .setImage_media("image_url.jpg")
         .setIs_active(false)
         .setMaximum_stock_level(2)
@@ -71,10 +72,10 @@ public class InventoryServiceTest {
         .setProduct_id(23)
         .setProduct_name("Shampoo")
         .setQuantity_per_unit(3)
-        //  .setReduce_quantity(2)
+        .setReduce_quantity(2)
         .setSupplier_name("Sample Supplier")
         .setTax_rate(18)
-        // .setUpdated_at(01 - 05 - 2027)
+        .setUpdated_at(LocalDate.now())
         .setWeight(500);
     Mockito.when(repo.save(Mockito.any())).thenReturn(inventoryEntity);
     InventoryResponse response = inventoryService.addOrUpdateInventory(request);
@@ -90,10 +91,10 @@ public class InventoryServiceTest {
     request.setBrand_name("Sample Brand");
     request.setCategory_name("Electronics");
     request.setCost_price(100);
-    // request.setCreated_at(null);
+    request.setCreated_at(LocalDate.now());
     request.setDescription("This is a sample product description");
     request.setDimensions(200);
-    // request.setExpiryDate(null);
+    request.setExpiryDate(LocalDate.now());
     request.setImage_media("image_url.jpg");
     request.setIs_active(false);
     request.setMaximum_stock_level(2);
@@ -106,7 +107,7 @@ public class InventoryServiceTest {
     request.setSku("W234");
     request.setSupplier_name("Sample name");
     request.setTax_rate(18);
-    // request.setUpdated_at(null);
+    request.setUpdated_at(LocalDate.now());
     request.setWeight(500);
 
     Inventory inventoryEntity = new Inventory();
@@ -116,10 +117,10 @@ public class InventoryServiceTest {
         .setBrand_name("Sample Brand")
         .setCategory_name("Electronics")
         .setCost_price(100)
-        // .setCreated_at(null)
+        .setCreated_at(LocalDate.now())
         .setDescription("This is a sample product description")
         .setDimensions(200)
-        //      .setExpiryDate(null)
+        .setExpiryDate(LocalDate.now())
         .setImage_media("image_url.jpg")
         .setIs_active(false)
         .setMaximum_stock_level(3)
@@ -129,7 +130,7 @@ public class InventoryServiceTest {
         .setQuantity_per_unit(1)
         .setSupplier_name("Sample name")
         .setTax_rate(18)
-        // .setUpdated_at(null)
+        .setUpdated_at(LocalDate.now())
         .setWeight(400);
 
     Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(inventoryEntity));
@@ -148,8 +149,8 @@ public class InventoryServiceTest {
         .setBarcode((long) 234224556)
         .setBrand_name("Sample")
         .setCategory_name("Electronics")
-        //  .setCreated_at(null)
-        //  .setExpiryDate(null)
+        .setCreated_at(LocalDate.now())
+        .setExpiryDate(LocalDate.now())
         .setDescription("This is a sample product description")
         .setDimensions(200)
         .setImage_media("image_url.jpg")
@@ -163,7 +164,7 @@ public class InventoryServiceTest {
         .setQuantity_per_unit(1)
         .setReduce_quantity(23)
         .setTax_rate(18)
-        //  .setUpdated_at(null)
+        .setUpdated_at(LocalDate.now())
         .setWeight(500);
     Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(inventoryEntity));
     InventoryResponse response = inventoryService.findByproduct_id(45);
@@ -182,7 +183,7 @@ public class InventoryServiceTest {
         .setCost_price(100)
         .setDescription("This is a sample product description")
         .setDimensions(200)
-        //  .setExpiryDate(2025 - 05 - 01)
+        .setExpiryDate(LocalDate.now())
         .setImage_media("image_url.jpg")
         .setIs_active(false)
         .setMinimum_stock_level(3)
@@ -194,7 +195,6 @@ public class InventoryServiceTest {
         .setQuantity_per_unit(1)
         .setReduce_quantity(23);
     // .setSku("W234");
-    // when(mockObject.method()).thenReturn(Optional.of(new Inventory()));
 
     Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(new Inventory()));
     Mockito.when(repo.deleteByProductId(45)).thenReturn(1);
@@ -211,54 +211,55 @@ public class InventoryServiceTest {
     request.setBarcode((long) 1234564);
     request.setBrand_name("Sample");
     request.setCategory_name("Electronics");
-    //   request.setCreated_at(null);
     request.setCost_price(100);
     request.setDescription("This is a sample product description");
     request.setDimensions(200);
-    // request.setExpiryDate(null);
     request.setImage_media("image_url.jpg");
     request.setIs_active(false);
     request.setMaximum_stock_level(50);
     request.setMinimum_stock_level(2);
     request.setPrice(100);
     request.setProduct_id(45);
-    request.setProduct_name("Sample Name ");
+    request.setProduct_name("Sample Name");
     request.setQuantity_per_unit(1);
     request.setReduce_qunatity(20);
     request.setSku("W123");
     request.setSupplier_name("Sample Name");
     request.setTax_rate(18);
-    //  request.setUpdated_at(null);
     request.setWeight(500);
-
+    request.setCreated_at(LocalDate.now());
+    request.setUpdated_at(LocalDate.now());
+    request.setExpiryDate(LocalDate.now());
     Inventory entity = new Inventory();
     entity
         .setBarcode((long) 1234564)
         .setBrand_name("Sample")
         .setCategory_name("Electronics")
         .setCost_price(100)
-        // .setCreated_at(null)
         .setDescription("This is a sample product description")
         .setDimensions(200)
-        // .setExpiryDate(null)
         .setImage_media("image_url.jpg")
         .setIs_active(false)
-        .setMaximum_stock_level(3)
-        .setMinimum_stock_level(50)
+        .setMaximum_stock_level(50)
+        .setMinimum_stock_level(2)
         .setPrice(100)
         .setProduct_id(45)
         .setProduct_name("Sample Name")
         .setQuantity_per_unit(1)
-        .setReduce_quantity(20)
-        .setSupplier_name("Sample Name ")
+        .setReduce_quantity(23)
+        //  .setSku("W123")
+        .setSupplier_name("Sample Name")
         .setTax_rate(18)
         .setWeight(500);
 
     Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(entity));
-    entity.setReduce_quantity(20);
+
+    entity.setReduce_quantity(entity.getReduce_quantity() - request.getReduce_qunatity());
+
     Mockito.when(repo.save(Mockito.any())).thenReturn(entity);
 
     InventoryResponse response = inventoryService.reduceQuntity(request);
+
     Assert.assertEquals(ResponseCode.Reduce_Quantity_Updated.getMessage(), response.getMessage());
     Assert.assertEquals(ResponseCode.Reduce_Quantity_Updated.getCode(), response.getCode());
     Assert.assertNotNull(response);
