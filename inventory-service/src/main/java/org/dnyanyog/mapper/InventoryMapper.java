@@ -1,5 +1,7 @@
 package org.dnyanyog.mapper;
 
+import java.time.LocalDate;
+
 import org.dnyanyog.dto.InventoryRequest;
 import org.dnyanyog.dto.InventoryResponse;
 import org.dnyanyog.entity.Inventory;
@@ -24,7 +26,7 @@ public class InventoryMapper {
         .setCost_price(request.getCost_price())
         .setProduct_name(request.getProduct_name())
         .setQuantity_per_unit(request.getQuantity_per_unit())
-        //  .setUpdated_at(request.)
+          .setUpdated_at(LocalDate.now())
         .setUpdated_at(request.getUpdated_at())
         .setExpiryDate(request.getExpiryDate())
         .setReduce_quantity(request.getReduce_qunatity())
