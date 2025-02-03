@@ -194,7 +194,6 @@ public class InventoryServiceTest {
         .setSupplier_name("Sample Name ")
         .setQuantity_per_unit(1)
         .setReduce_quantity(23);
-    // .setSku("W234");
 
     Mockito.when(repo.findByProductId(45)).thenReturn(Optional.of(new Inventory()));
     Mockito.when(repo.deleteByProductId(45)).thenReturn(1);
@@ -247,7 +246,6 @@ public class InventoryServiceTest {
         .setProduct_name("Sample Name")
         .setQuantity_per_unit(1)
         .setReduce_quantity(23)
-        //  .setSku("W123")
         .setSupplier_name("Sample Name")
         .setTax_rate(18)
         .setWeight(500);
